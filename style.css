@@ -1,0 +1,567 @@
+/* ==========================================================
+   PARA TATII — carta estilo Minecraft (bioma de cerezos)
+   ========================================================== */
+
+:root {
+    --rosa-cerezo: #f4a9c6;
+    --rosa-fuerte: #c2255c;
+    --madera: #e3a29d;          /* tablones de cerezo */
+    --madera-osc: #b9727a;
+    --tronco: #1f0f18;          /* tronco de cerezo oscuro */
+    --ciruela: #3b2130;
+    --papel: #fdf0d5;
+    --tinta: #4a2733;
+    --pasto: #6fbf3f;
+    --dorado: #ffd23f;
+
+    --fuente-titulo: "Press Start 2P", "Courier New", monospace;
+    --fuente-texto: "VT323", "Courier New", monospace;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    overflow: hidden;
+    font-family: var(--fuente-texto);
+    background: #f0a8cf;
+}
+
+/* ESCENA (la imagen de fondo) */
+
+.scene {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    height: 100dvh;
+    overflow: hidden;
+    background: #f0a8cf url("fondo.jpg") 58% 100% / cover no-repeat;
+}
+
+/* ==========================================================
+   CARTA
+   ========================================================== */
+
+.letter {
+    position: absolute;
+    z-index: 7;
+    left: 50%;
+    top: 46%;
+    width: min(460px, 92vw);
+    height: min(560px, 80vh);
+    height: min(560px, 80dvh);
+    transform: translate(-50%, -50%);
+    perspective: 1400px;
+}
+
+.letter-front,
+.letter-content {
+    position: absolute;
+    inset: 0;
+    border: 6px solid var(--tronco);
+    /* marco de tablones de cerezo hacia adentro + sombra dura */
+    box-shadow:
+        inset 0 0 0 6px var(--madera),
+        inset 0 0 0 10px var(--madera-osc),
+        12px 12px 0 rgba(31, 15, 24, 0.45);
+}
+
+.letter-front[hidden],
+.letter-content[hidden] {
+    display: none;
+}
+
+/* PORTADA */
+
+.letter-front {
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 12px;
+    padding: 28px 28px 84px;
+    text-align: center;
+    background: var(--ciruela);
+    transform-origin: left center;
+    backface-visibility: hidden;
+}
+
+.letter-front.abriendo {
+    animation: abrirPortada 0.7s ease-in-out forwards;
+}
+
+.letter-front.cerrando {
+    animation: cerrarPortada 0.6s ease-in-out;
+}
+
+@keyframes abrirPortada {
+    to { transform: rotateY(-125deg); }
+}
+
+@keyframes cerrarPortada {
+    from { transform: rotateY(-125deg); }
+}
+
+/* foto de girasoles que se funde con el fondo de la portada */
+
+.letter-front::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    height: 58%;
+    background: url("girasoles.jpg") 62% 45% / cover no-repeat;
+    -webkit-mask-image: linear-gradient(to bottom, #000 42%, transparent 92%);
+    mask-image: linear-gradient(to bottom, #000 42%, transparent 92%);
+}
+
+.pixel-heart {
+    color: #e63946;
+    font-size: 64px;
+    line-height: 1;
+    animation: latido 1.4s ease-in-out infinite;
+}
+
+.pixel-heart img {
+    display: block;
+    image-rendering: pixelated;
+    height: clamp(36px, 10dvh, 60px);
+    width: auto;
+    filter: drop-shadow(4px 4px 0 rgba(0, 0, 0, 0.4));
+}
+
+@keyframes latido {
+    0%, 100% { transform: scale(1); }
+    50%      { transform: scale(1.12); }
+}
+
+.letter-front h1 {
+    margin-top: 8px;
+    font-family: var(--fuente-titulo);
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 1.3;
+    color: #ffe3ef;
+    text-shadow: 3px 3px 0 #a3316a;
+}
+
+.letter-front p {
+    font-size: 30px;
+    line-height: 1;
+    color: #ffc2da;
+}
+
+/* jardincito al pie de la portada */
+
+.cover-garden {
+    pointer-events: none;
+    position: absolute;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 16px;
+    padding-bottom: 7px;
+    background: linear-gradient(to top, #4f9a2f 0 4px, #6fbf3f 4px 10px, transparent 10px);
+}
+
+/* BOTONES (estilo botón de Minecraft) */
+
+.btn {
+    margin-top: 12px;
+    padding: 16px 22px;
+    border: 4px solid var(--tronco);
+    background: var(--pasto);
+    color: #fff;
+    font-family: var(--fuente-titulo);
+    font-size: 12px;
+    text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.45);
+    cursor: pointer;
+    box-shadow:
+        inset 4px 4px 0 rgba(255, 255, 255, 0.35),
+        inset -4px -4px 0 rgba(0, 0, 0, 0.28),
+        5px 5px 0 rgba(31, 15, 24, 0.55);
+}
+
+.btn:hover {
+    background: #82d24f;
+}
+
+.btn:active {
+    transform: translate(3px, 3px);
+    box-shadow:
+        inset 4px 4px 0 rgba(0, 0, 0, 0.28),
+        inset -4px -4px 0 rgba(255, 255, 255, 0.35),
+        2px 2px 0 rgba(31, 15, 24, 0.55);
+}
+
+.btn:focus-visible {
+    outline: 4px solid var(--dorado);
+    outline-offset: 3px;
+}
+
+.btn-small {
+    display: block;
+    margin: 30px auto 0;
+    padding: 13px 18px;
+    font-size: 10px;
+}
+
+/* CONTENIDO DE LA CARTA */
+
+.letter-content {
+    z-index: 1;
+    padding: 10px; /* deja libre el marco de madera */
+    background: var(--papel);
+}
+
+.letter-scroll {
+    height: 100%;
+    overflow-y: auto;
+    padding: 24px 26px 28px;
+    color: var(--tinta);
+    /* flores de Minecraft de fondo (las dibuja script.js) */
+    background-image: var(--patron, none);
+    background-size: 176px 176px;
+    background-attachment: local;
+    background-position: 0 0;
+    scrollbar-width: thin;
+    scrollbar-color: var(--rosa-fuerte) #f3dcc0;
+}
+
+.letter-scroll::-webkit-scrollbar {
+    width: 14px;
+}
+
+.letter-scroll::-webkit-scrollbar-track {
+    background: #f3dcc0;
+}
+
+.letter-scroll::-webkit-scrollbar-thumb {
+    background: var(--rosa-fuerte);
+    border: 3px solid #f3dcc0;
+}
+
+.foto-girasoles {
+    margin: 0 0 22px;
+    border: 4px solid var(--tronco);
+    background: var(--tronco);
+    box-shadow: 4px 4px 0 var(--madera-osc);
+    line-height: 0;
+}
+
+.foto-girasoles img {
+    display: block;
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    object-position: 60% 55%;
+}
+
+.letter-scroll h2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 26px;
+    font-family: var(--fuente-titulo);
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 1.4;
+    text-align: center;
+    color: var(--rosa-fuerte);
+    outline: none;
+}
+
+.letter-scroll p {
+    margin-bottom: 18px;
+    font-size: 25px;
+    line-height: 1.2;
+}
+
+.letter-scroll strong {
+    font-weight: 400;
+    color: var(--rosa-fuerte);
+    box-shadow: inset 0 -0.32em 0 rgba(255, 210, 63, 0.55);
+}
+
+.final-message {
+    margin: 30px 0;
+    text-align: center;
+    font-size: 34px;
+    line-height: 1.05;
+    color: #d6336c;
+    text-shadow: 2px 2px 0 rgba(255, 210, 63, 0.8);
+}
+
+.signature {
+    text-align: right;
+    font-size: 25px;
+    line-height: 1.25;
+}
+
+.signature span {
+    color: var(--rosa-fuerte);
+}
+
+/* sprites de Minecraft insertados por script.js */
+
+.mc-sprite {
+    display: inline-flex;
+    align-items: flex-end;
+}
+
+.mc-sprite img {
+    display: block;
+    image-rendering: pixelated;
+}
+
+/* ==========================================================
+   PRADO DE FLORES
+   ========================================================== */
+
+.meadow {
+    position: absolute;
+    z-index: 6;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 0;
+    pointer-events: none;
+}
+
+.flor {
+    position: absolute;
+    bottom: var(--b);
+    left: var(--l);
+    transform-origin: 50% 100%;
+    animation: mecer var(--t) ease-in-out var(--d) infinite alternate;
+}
+
+.flor.suelo {
+    animation: none;
+}
+
+.flor img {
+    display: block;
+    image-rendering: pixelated;
+    filter: drop-shadow(3px 3px 0 rgba(28, 66, 18, 0.35));
+}
+
+@keyframes mecer {
+    from { transform: rotate(-2deg); }
+    to   { transform: rotate(2deg); }
+}
+
+/* ==========================================================
+   PÉTALOS DE CEREZO
+   ========================================================== */
+
+.petals {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.petal {
+    position: absolute;
+    top: -30px;
+    left: var(--x);
+    animation: caer var(--dur) linear var(--delay) infinite;
+}
+
+.petal i {
+    display: block;
+    width: var(--s);
+    height: var(--s);
+    background: var(--c);
+    box-shadow: inset -2px -2px 0 rgba(200, 50, 110, 0.4);
+    animation: petaloMece var(--sway) ease-in-out infinite alternate;
+}
+
+@keyframes caer {
+    to { transform: translateY(115vh); }
+}
+
+@keyframes petaloMece {
+    from { transform: translateX(-26px) rotate(10deg); }
+    to   { transform: translateX(36px) rotate(80deg); }
+}
+
+/* ==========================================================
+   ABEJITA
+   ========================================================== */
+
+.bee {
+    position: absolute;
+    z-index: 4;
+    top: 56%;
+    left: 0;
+    pointer-events: none;
+    animation: abejaViaja 34s linear infinite alternate;
+}
+
+.bee-bob {
+    animation: abejaBob 1.1s ease-in-out infinite alternate;
+}
+
+.bee-flip {
+    animation: abejaGira 68s steps(1) infinite;
+}
+
+.bee-flip img {
+    display: block;
+    image-rendering: pixelated;
+    filter: drop-shadow(3px 3px 0 rgba(60, 20, 40, 0.25));
+}
+
+@keyframes abejaViaja {
+    from { transform: translateX(-14vw); }
+    to   { transform: translateX(112vw); }
+}
+
+@keyframes abejaBob {
+    from { transform: translateY(-12px) rotate(-4deg); }
+    to   { transform: translateY(12px) rotate(4deg); }
+}
+
+@keyframes abejaGira {
+    0%   { transform: scaleX(1); }
+    50%  { transform: scaleX(-1); }
+    100% { transform: scaleX(-1); }
+}
+
+/* ==========================================================
+   CORAZONES AL ABRIR LA CARTA
+   ========================================================== */
+
+.corazon-vuela {
+    position: absolute;
+    z-index: 9;
+    left: 50%;
+    top: 50%;
+    display: block;
+    image-rendering: pixelated;
+    pointer-events: none;
+    animation: vuela 1.5s ease-out both;
+}
+
+@keyframes vuela {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.6);
+    }
+    15% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: translate(calc(-50% + var(--dx)), calc(-50% - var(--dy))) scale(1.15);
+    }
+}
+
+/* ==========================================================
+   RESPONSIVE
+   ========================================================== */
+
+@media (max-width: 600px) {
+
+    .letter-front {
+        padding: 20px 20px 84px;
+    }
+
+    .letter-front h1 {
+        font-size: 22px;
+        text-shadow: 2px 2px 0 #a3316a;
+    }
+
+    .letter-front p {
+        font-size: 26px;
+    }
+
+    .letter-scroll {
+        padding: 18px 16px 22px;
+    }
+
+    .foto-girasoles img {
+        height: 120px;
+    }
+
+    .letter-scroll h2 {
+        gap: 8px;
+        font-size: 12px;
+    }
+
+    .letter-scroll p,
+    .signature {
+        font-size: 22px;
+    }
+
+    .final-message {
+        font-size: 28px;
+    }
+}
+
+@media (max-height: 520px) {
+
+    .letter {
+        top: 45%;
+        height: 76vh;
+        height: 76dvh;
+    }
+
+    .cover-garden {
+        display: none;
+    }
+
+    .letter-front {
+        gap: 6px;
+        padding: 14px;
+        justify-content: center;
+    }
+
+    .letter-front::before {
+        height: 100%;
+        opacity: 0.3;
+    }
+
+    .letter-front h1 {
+        margin-top: 2px;
+        font-size: 20px;
+    }
+
+    .letter-front p {
+        font-size: 22px;
+    }
+
+    .letter-front .btn {
+        margin-top: 4px;
+        padding: 11px 16px;
+    }
+}
+
+/* Respetar a quien prefiere menos movimiento */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .petals,
+    .bee,
+    .corazon-vuela {
+        display: none;
+    }
+
+    .flor,
+    .pixel-heart {
+        animation: none;
+    }
+}

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#f4a9c6">
+    <title>Para Tatii 💛</title>
+
+    <!-- Fuentes pixel (Press Start 2P para títulos, VT323 para el texto) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="scene">
+
+        <!-- PÉTALOS DE CEREZO CAYENDO (los crea script.js) -->
+        <div class="petals" id="petals" aria-hidden="true"></div>
+
+        <!-- ABEJITA -->
+        <div class="bee" aria-hidden="true">
+            <div class="bee-bob">
+                <div class="bee-flip" id="bee"></div>
+            </div>
+        </div>
+
+        <!-- CARTA -->
+        <main class="letter" id="letter">
+
+            <section class="letter-front" id="portada">
+                <div class="pixel-heart" id="corazon" aria-hidden="true">♥</div>
+                <h1>Para Tatii</h1>
+                <p>Mi chaparrita bella 💛</p>
+                <button type="button" class="btn" id="openLetter">ABRIR CARTA</button>
+
+                <!-- jardincito de la portada -->
+                <div class="cover-garden" aria-hidden="true">
+                    <span class="mc-sprite" data-sprite="tulipan" data-px="3">🌼</span>
+                    <span class="mc-sprite" data-sprite="margarita" data-px="3">🌼</span>
+                    <span class="mc-sprite" data-sprite="girasol" data-px="3">🌻</span>
+                    <span class="mc-sprite" data-sprite="amapola" data-px="3">🌼</span>
+                    <span class="mc-sprite" data-sprite="aciano" data-px="3">🌼</span>
+                </div>
+            </section>
+
+            <article class="letter-content" id="contenido" aria-labelledby="titulo-carta" hidden>
+                <div class="letter-scroll" id="scroll">
+
+                    <figure class="foto-girasoles">
+                        <img src="girasoles.jpg" width="540" height="304" alt="Girasoles de Minecraft en un campo">
+                    </figure>
+
+                    <h2 id="titulo-carta" tabindex="-1">
+                        <span class="mc-sprite" data-sprite="margarita" data-px="3">🌼</span>
+                        Para mi amor
+                        <span class="mc-sprite" data-sprite="margarita" data-px="3">🌼</span>
+                    </h2>
+
+                    <p>
+                        Hola mi amor 💛
+                    </p>
+
+                    <p>
+                        Yo sé que no estoy cerca de ti y ni tengo dinero
+                        para unas flores, pero vengo a decirte que aunque
+                        no tenga nada, te demuestro con mis acciones,
+                        poco a poco, lo que puedo, amor.
+                    </p>
+
+                    <p>
+                        Doy mi esfuerzo para que veas lo mucho que me importas
+                        y para que veas que te <strong>AMOOOO DEMASIADO</strong>.
+                    </p>
+
+                    <p>
+                        Porque mi amor por ti es como un hermoso jardín,
+                        y tú eres mi flor, la cual solo quiero cuidar
+                        en mi jardín lleno de esperanza y sueños. 🌼
+                    </p>
+
+                    <p>
+                        Porque realmente te amoooo demasiado.
+                        Que diciéndotelo no se puede empaquetar todo
+                        ese amor que te tengo.
+                    </p>
+
+                    <p>
+                        Porque eres todo en mi vida, mi amor.
+                        <strong>Eres tú en un millón.</strong> 💛
+                    </p>
+
+                    <div class="final-message">
+                        Tee amooo muchooooo mi amooorrr &lt;3
+                    </div>
+
+                    <div class="signature">
+                        Att: cs_lopez<br>
+                        Para: Tatii<br>
+                        <span>(mi chaparrita bella) 💛</span>
+                    </div>
+
+                    <button type="button" class="btn btn-small" id="closeLetter">Cerrar carta</button>
+                </div>
+            </article>
+
+        </main>
+
+        <!-- PRADO DE FLORES (lo siembra script.js) -->
+        <div class="meadow" id="prado" aria-hidden="true"></div>
+
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
